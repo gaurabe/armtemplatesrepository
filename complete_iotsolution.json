@@ -48,10 +48,9 @@
         "funcStorageAccountType": "Standard_LRS",
         "funcSku": "Standard",
         "funcWorkerSize": "0",
-		"dpsApiVersion":"2018-11-08",
         "dpsLocation": "[resourceGroup().location]",
-        "dpsName":"[concat(parameters('solutionName'),'dps')]"
-		
+        "dpsName":"[concat(parameters('solutionName'),'dps')]",
+		"dpsApiVersion":"2018-11-08"
     },
     "resources": [
         {
@@ -95,7 +94,7 @@
             }
         },
         {
-            "apiVersion": "[variables('dpsApiVersion')]",
+            "apiVersion": "[variables('docDbApiVersion')]",
             "type": "Microsoft.Devices/ProvisioningServices",
             "name": "[variables('dpsName')]",
             "location": "[variables('dpsLocation')]",
