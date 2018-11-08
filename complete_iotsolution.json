@@ -131,27 +131,27 @@
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('funcStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('funcStorageAccountName')), '2015-05-01-preview').key1,';')]"
                         },
                         {
-                            "name": "Sb",
+                            "name": "F5Sb",
                             "value": "[listkeys(variables('sbRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
                         },
                         {
-                            "name": "Db",
+                            "name": "F5Db",
                             "value": "[concat('https://',parameters('solutionName'),'db','.documents.azure.com:443/')]"
                         },
                         {
-                            "name": "DbKey",
+                            "name": "F5DbKey",
                             "value": "[listkeys(variables('docDbName'), variables('docDbApiVersion')).primaryMasterKey]"
                         },
                         {
-                            "name": "IotHost",
+                            "name": "F5IotHost",
                             "value": "[reference(variables('iotHubResourceId')).hostName]"
                         },
                         {
-                            "name": "IotKeyName",
+                            "name": "F5IotKeyName",
                             "value": "[variables('iotHubKeyName')]"
                         },
                         {
-                            "name": "IotKey",
+                            "name": "F5IotKey",
                             "value": "[listkeys(variables('iotHubKeyResource'), variables('iotHubVersion')).primaryKey]"
                         }
                     ]
