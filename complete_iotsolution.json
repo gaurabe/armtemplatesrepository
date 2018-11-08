@@ -131,11 +131,11 @@
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('funcStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('funcStorageAccountName')), '2015-05-01-preview').key1,';')]"
                         },
                         {
-                            "name": "papaySb",
+                            "name": "Sb",
                             "value": "[listkeys(variables('sbRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
                         },
                         {
-                            "name": "papayaDb",
+                            "name": "Db",
                             "value": "[concat('https://',parameters('solutionName'),'db','.documents.azure.com:443/')]"
                         },
                         {
@@ -143,15 +143,15 @@
                             "value": "[listkeys(variables('docDbName'), variables('docDbApiVersion')).primaryMasterKey]"
                         },
                         {
-                            "name": "papayaIotHost",
+                            "name": "IotHost",
                             "value": "[reference(variables('iotHubResourceId')).hostName]"
                         },
                         {
-                            "name": "papayaIotKeyName",
+                            "name": "IotKeyName",
                             "value": "[variables('iotHubKeyName')]"
                         },
                         {
-                            "name": "papayaIotKey",
+                            "name": "IotKey",
                             "value": "[listkeys(variables('iotHubKeyResource'), variables('iotHubVersion')).primaryKey]"
                         }
                     ]
