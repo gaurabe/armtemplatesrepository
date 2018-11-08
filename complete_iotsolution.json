@@ -9,6 +9,62 @@
                 "description": "IOT Hub demo"
             }
         },
+		"location": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": "Location of resources"
+            }
+        },
+		"docDbName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": "Cosmos DB name"
+            }
+        },
+		"iotHubName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " IoTHub name"
+            }
+        },
+		"sbName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " Service Bus Name"
+            }
+        },
+		"funcName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": "  Azure Function Name"
+            }
+        },
+		"funcSku": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " Azure function type"
+            }
+        },
+		"dpsName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " Device Provisioning Service name"
+            }
+        },
+		"saName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " Stream Analytics name"
+            }
+        },
         "iotHubSku": {
             "type": "string",
             "allowedValues": [
@@ -25,31 +81,31 @@
     "variables": {
         "location": "[resourceGroup().location]",
         "docDbApiVersion": "2015-04-08",
-        "docDbName": "[concat(parameters('solutionName'),'db')]",
+        "docDbName": "[concat(parameters('docDbName'),'db')]",
         "sbVersion": "2015-08-01",
-        "sbName": "[concat(parameters('solutionName'),'sb')]",
+        "sbName": "[concat(parameters('sbName'),'sb')]",
         "sbQName": "iotdemoqueue",
         "sbQueuePolicyName": "sbqueuePolicy",
         "sbQueueRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/queues/authorizationRules', variables('sbName'), variables('sbQName'), variables('sbQueuePolicyName'))]",
         "sbRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbName'), 'RootManageSharedAccessKey')]",
         "saVersion": "2015-10-01",
-        "saName": "[concat(parameters('solutionName'), 'stream')]",
+        "saName": "[concat(parameters('saName'), 'stream')]",
         "iotHubVersion": "2016-02-03",
         "iotHubTier": "Standard",
-        "iotHubName": "[concat(parameters('solutionName'), 'hub')]",
+        "iotHubName": "[concat(parameters('iotHubName'), 'hub')]",
         "iotHubKeyName": "iothubowner",
         "iotHubKeyResource": "[resourceId('Microsoft.Devices/Iothubs/Iothubkeys', variables('iotHubName'), variables('iotHubKeyName'))]",
         "iotHubResourceId": "[resourceId('Microsoft.Devices/Iothubs', variables('iotHubName'))]",
         "iotConsGroupName": "iotdemocg",
-        "funcName": "[concat(parameters('solutionName'),'funct')]",
+        "funcName": "[concat(parameters('funcName'),'funct')]",
         "funcApiVersion": "2015-08-01",
-        "funcStorageAccountName": "[concat(parameters('solutionName'),'funct','sa')]",
-        "funcHostingPlanName": "[concat(parameters('solutionName'), '-funct-plan')]",
+        "funcStorageAccountName": "[concat(parameters('funcName'),'funct','sa')]",
+        "funcHostingPlanName": "[concat(parameters('funcName'), '-funct-plan')]",
         "funcStorageAccountType": "Standard_LRS",
         "funcSku": "Standard",
         "funcWorkerSize": "0",
         "dpsLocation": "[resourceGroup().location]",
-        "dpsName":"[concat(parameters('solutionName'),'dps')]"
+        "dpsName":"[concat(parameters('dpsName'),'dps')]"
     },
     "resources": [
         {
