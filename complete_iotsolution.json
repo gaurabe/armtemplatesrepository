@@ -48,7 +48,8 @@
         "funcStorageAccountType": "Standard_LRS",
         "funcSku": "Standard",
         "funcWorkerSize": "0",
-        "dpsName":"[concat(parameters('solutionName'),'dps')]"
+		"dpsLocation": "[resourceGroup().location]",		
+		"dpsName":"[concat(parameters('solutionName'),'dps')]"					
     },
     "resources": [
         {
@@ -91,7 +92,7 @@
                 "numberOfWorkers": 1
             }
         },
-        {
+		{
             "apiVersion": "2017-08-21-preview",
             "type": "Microsoft.Devices/ProvisioningServices",
             "name": "[variables('dpsName')]",
@@ -130,11 +131,11 @@
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('funcStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('funcStorageAccountName')), '2015-05-01-preview').key1,';')]"
                         },
                         {
-                            "name": "Sb",
+                            "name": "papaySb",
                             "value": "[listkeys(variables('sbRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
                         },
                         {
-                            "name": "Db",
+                            "name": "papayaDb",
                             "value": "[concat('https://',parameters('solutionName'),'db','.documents.azure.com:443/')]"
                         },
                         {
@@ -142,15 +143,15 @@
                             "value": "[listkeys(variables('docDbName'), variables('docDbApiVersion')).primaryMasterKey]"
                         },
                         {
-                            "name": "IotHost",
+                            "name": "papayaIotHost",
                             "value": "[reference(variables('iotHubResourceId')).hostName]"
                         },
                         {
-                            "name": "IotKeyName",
+                            "name": "papayaIotKeyName",
                             "value": "[variables('iotHubKeyName')]"
                         },
                         {
-                            "name": "IotKey",
+                            "name": "papayaIotKey",
                             "value": "[listkeys(variables('iotHubKeyResource'), variables('iotHubVersion')).primaryKey]"
                         }
                     ]
