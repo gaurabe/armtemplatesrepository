@@ -24,17 +24,17 @@
     },
     "variables": {
         "location": "[resourceGroup().location]",
-        "docDbApiVersion": "2015-04-08",
+        "docDbApiVersion": "2018-11-08",
         "docDbName": "[concat(parameters('solutionName'),'db')]",
-        "sbVersion": "2015-08-01",
+        "sbVersion": "2018-11-08",
         "sbName": "[concat(parameters('solutionName'),'sb')]",
         "sbQName": "iotdemoqueue",
         "sbQueuePolicyName": "sbqueuePolicy",
         "sbQueueRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/queues/authorizationRules', variables('sbName'), variables('sbQName'), variables('sbQueuePolicyName'))]",
         "sbRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbName'), 'RootManageSharedAccessKey')]",
-        "saVersion": "2015-10-01",
+        "saVersion": "2018-11-08",
         "saName": "[concat(parameters('solutionName'), 'stream')]",
-        "iotHubVersion": "2016-02-03",
+        "iotHubVersion": "2018-11-08",
         "iotHubTier": "Standard",
         "iotHubName": "[concat(parameters('solutionName'), 'hub')]",
         "iotHubKeyName": "iothubowner",
@@ -42,14 +42,16 @@
         "iotHubResourceId": "[resourceId('Microsoft.Devices/Iothubs', variables('iotHubName'))]",
         "iotConsGroupName": "iotdemocg",
         "funcName": "[concat(parameters('solutionName'),'funct')]",
-        "funcApiVersion": "2015-08-01",
+        "funcApiVersion": "2018-11-08",
         "funcStorageAccountName": "[concat(parameters('solutionName'),'funct','sa')]",
         "funcHostingPlanName": "[concat(parameters('solutionName'), '-funct-plan')]",
         "funcStorageAccountType": "Standard_LRS",
         "funcSku": "Standard",
         "funcWorkerSize": "0",
+		"dpsApiVersion":"2018-11-08",
         "dpsLocation": "[resourceGroup().location]",
         "dpsName":"[concat(parameters('solutionName'),'dps')]"
+		
     },
     "resources": [
         {
@@ -93,7 +95,7 @@
             }
         },
         {
-            "apiVersion": "2017-08-21-preview",
+            "apiVersion": "[variables('dpsApiVersion')]",
             "type": "Microsoft.Devices/ProvisioningServices",
             "name": "[variables('dpsName')]",
             "location": "[variables('dpsLocation')]",
