@@ -40,9 +40,9 @@
         }        
   ],
     "outputs": {
-         "sbusqueuename": {
+         "dpsname": {
             "type": "string",
-            "value": "[variables('sbQName')]"
+            "value": "[variables('dpsName')]"
         }
     }
 }
