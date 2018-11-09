@@ -1,0 +1,48 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "solutionName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": "IOT Hub demo"
+            }
+        },
+		"location": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": "Location of resources"
+            }
+        },
+		
+		"dpsName": {
+            "type": "string",
+            "maxLength": 16,
+            "metadata": {
+                "description": " Device Provisioning Service name"
+            }
+        }
+		},
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "dpsLocation": "[resourceGroup().location]",
+        "dpsName":"[concat(parameters('dpsName'),'dps')]"
+    },
+    "resources": [
+       {
+            "apiVersion": "2017-08-21-preview",
+            "type": "Microsoft.Devices/ProvisioningServices",
+            "name": "[variables('dpsName')]",
+            "location": "[variables('dpsLocation')]",
+            "properties": {}
+        }        
+  ],
+    "outputs": {
+         "sbusqueuename": {
+            "type": "string",
+            "value": "[variables('sbQName')]"
+        }
+    }
+}
